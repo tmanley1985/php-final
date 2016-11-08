@@ -11,13 +11,20 @@ class Model {
 		$this->connection = $connection;
 	}
 
-	public static function find($id)
+	public function validate()
 	{
 
 	}
-
-	public static function findAll()
+	
+	public static function find($id)
 	{
+
+
+	}
+
+	public static function findAll($condition)
+	{
+
 
 	}
 
