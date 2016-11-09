@@ -15,9 +15,13 @@ class TodosController extends Controller {
 
 	public function index()
 	{
-		$todo = $this->todo->get();
+		// $todos = $this->todo->get();
 
-		return $this->view();
+		$todos = [
+			[	'title' => 'Make Sandwich']
+		];
+
+		return $this->view('home', $todos);
 	}
 
 	public function show($id)
@@ -30,12 +34,14 @@ class TodosController extends Controller {
 
 	public function create()
 	{
-		return $this->view();
+		return $this->view('create');
 	}
 
 	public function store()
 	{
+		extract($_POST);
 
+		return $this->view('home');
 
 	}
 

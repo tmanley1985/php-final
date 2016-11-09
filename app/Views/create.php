@@ -10,18 +10,15 @@
     <body>
      
     <header>
-        <h1>TodoApp</h1>
+        <h1>Create A New Todo</h1>
     </header>
 
     <div class="container">
-
-        <?php if(isset($data)): ?>
-
-            <?php foreach($data as $todo) ?>
-
-                <div><?=$todo['title']; ?></div>
-            <? endforeach ?>
-        <?php endif ?>
+        <form action="/todo/store" method="POST">
+            
+            <input type="" name="title" placeholder="New Todo">
+            <button type="submit">Submit</button>
+        </form>
     </div>    
        
     </body>

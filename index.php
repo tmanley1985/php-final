@@ -32,7 +32,7 @@ class Router {
 		self::$controller = new App\Controllers\TodosController(new App\Models\Todo());
 		// Call the controller method.
 
-		var_dump(count($url));
+		
 
 		// If url is empty go to home page.
 
@@ -61,9 +61,9 @@ class Router {
 		// If url has ? then remove it along with everything after it.
 		if(strpos($url,'?') !== false) {
 
-			$url = rtrim($url, '?');
+			$url = strstr($url, '?');
 		}
-		
+
 		$url = filter_var( trim($url, '/'), FILTER_SANITIZE_URL);
 
 
