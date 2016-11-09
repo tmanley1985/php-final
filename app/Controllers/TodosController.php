@@ -1,6 +1,6 @@
 <?php namespace App\Controllers;
 
-use App\Controller;
+use App\Controllers\Controller;
 use App\Models\Todo;
 
 class TodosController extends Controller {
@@ -35,7 +35,8 @@ class TodosController extends Controller {
 
 	public function store()
 	{
-		
+
+
 	}
 
 	public function edit()

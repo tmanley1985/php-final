@@ -6,8 +6,16 @@ class Model {
 
 	protected $connection;
 
-	public function __construct(DB $connection)
+	public function __construct()
 	{
+		try {
+
+			$connection = new \PDO('mysql:host=127.0.0.1;dbname=homestead', 'homestead', 'secret');
+
+		}catch(PDOException $e) {
+			die('Could not connect');
+		}
+
 		$this->connection = $connection;
 	}
 
