@@ -13,14 +13,16 @@
         <h1>TodoApp</h1>
     </header>
 
+    <a href="/todo/create">Create New Todo</a>
+    
     <div class="container">
 
         <?php if(isset($data)): ?>
 
-            <?php foreach($data as $todo) ?>
+            <?php foreach($data as $todo): ?>
 
-                <div><?=$todo['title']; ?></div>
-            <? endforeach ?>
+                <a href="/todo/show/"<?= $todo['id'];?>></a><?=$todo['title']; ?></a>
+            <?php endforeach ?>
         <?php endif ?>
     </div>    
        

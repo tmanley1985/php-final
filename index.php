@@ -20,11 +20,8 @@ class Router {
 		// // Parse the url string
 		$url = self::parseUrl($url);
 
-
+		// At the moment, there's only one controller and model.  Will refactor this later;
 		self::$controller = new App\Controllers\TodosController(new App\Models\Todo());
-		// Call the controller method.
-
-		
 
 		// If url is empty go to home page.
 

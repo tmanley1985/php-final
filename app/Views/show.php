@@ -10,16 +10,10 @@
     <body>
      
     <header>
-        <h1>Create A New Todo</h1>
+    
+        <h1><?=$data['title']; ?></h1>
     </header>
-
-    <div class="container">
-        <form action="/todo/store" method="POST">
-            
-            <input type="text" name="title" placeholder="New Todo">
-            <button type="submit">Submit</button>
-        </form>
-    </div>    
+ 
        
     </body>
 </html>

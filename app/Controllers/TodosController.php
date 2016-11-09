@@ -18,7 +18,7 @@ class TodosController extends Controller {
 		// $todos = $this->todo->get();
 
 		$todos = [
-			[	'title' => 'Make Sandwich']
+			[	'id' => 1, 'title' => 'Make Sandwich']
 		];
 
 		return $this->view('home', $todos);
@@ -26,9 +26,11 @@ class TodosController extends Controller {
 
 	public function show($id)
 	{
-		$todo = Todo::find($id);
+		// $todo = Todo::find($id);
 
-		return $this->view();
+		$todo = ['id' => $id, 'title' => 'Make Sandwich'];
+		
+		return $this->view('show', $todo);
 
 	}
 
