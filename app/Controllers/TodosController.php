@@ -59,9 +59,8 @@ class TodosController extends Controller {
 	public function edit($id)
 	{
 
-		// $todo = Todo::find($id);
+		$todo = Todo::find($id);
 
-		$todo = ['id' => $id, 'title' => 'Make Sandwich'];
 
 		return $this->view('edit', $todo);
 	}
@@ -76,7 +75,14 @@ class TodosController extends Controller {
 
 		// if errors are set, return view with errors.
 		
+
+
 		// Update the todo.
+
+
+		$todo = new Todo();
+
+		$todo->update($id, $title);
 
 		return $this->view('home');
 

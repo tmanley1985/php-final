@@ -60,6 +60,16 @@ class Model {
 
 	public function update($id, $title)
 	{
+		$db_name = $this->getDatabaseName(static::class);
+
+		$sql = "UPDATE `{$db_name}` SET `title` = :title WHERE id = :id";
+
+		$statement = $this->connection->prepare($sql);
+ 		
+ 		$statement->bindValue(":title", $title);
+ 		$statement->bindValue(":id", $id);
+ 		$statement->execute();
+ 		
 
 	}
 
