@@ -1,6 +1,5 @@
 <?php
 
-
 require_once('app/Controllers/Controller.php');
 require_once('app/Models/Model.php');
 require_once('app/Database/DB.php');

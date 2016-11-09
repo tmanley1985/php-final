@@ -1,7 +1,9 @@
-<?php namespace App\Controllers;
+<?php 
 
-use App\Controllers\Controller;
+namespace App\Controllers;
+
 use App\Models\Todo;
+use App\Controllers\Controller;
 
 class TodosController extends Controller {
 
