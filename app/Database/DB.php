@@ -2,6 +2,7 @@
 
 namespace App\Database;
 
-class DB {
+class DB 
+{
 	
 }

@@ -4,7 +4,8 @@ namespace App\Models;
 
 use App\Database\DB;
 
-class Model {
+class Model 
+{
 
 	protected $connection;
 	public static $errors = [];

@@ -9,7 +9,8 @@ require_once('app/Controllers/TodosController.php');
 $url = $_SERVER['REQUEST_URI'];
 
 
-class Router {
+class Router 
+{
 
 	protected static $controller;
 	protected static $method;

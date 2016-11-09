@@ -2,7 +2,8 @@
 
 namespace App\Controllers;
 
-class Controller {
+class Controller 
+{
 	/**
 	 * Requires the view file
 	 * @param  string $view Filename

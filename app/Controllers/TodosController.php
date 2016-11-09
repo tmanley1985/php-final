@@ -5,7 +5,8 @@ namespace App\Controllers;
 use App\Models\Todo;
 use App\Controllers\Controller;
 
-class TodosController extends Controller {
+class TodosController extends Controller 
+{
 
 	public $todo;
 
