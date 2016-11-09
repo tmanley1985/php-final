@@ -19,7 +19,7 @@ class TodosController extends Controller {
 
 		$todos = Todo::findAll();
 
-		
+
 		return $this->view('home', $todos);
 	}
 
@@ -47,6 +47,10 @@ class TodosController extends Controller {
 		// if errors are set, return view with errors.
 
 		// Store the todo.
+
+		$todo = new Todo();
+
+		$todo_added = $todo->save($title);
 
 		return $this->view('home');
 

@@ -40,8 +40,16 @@ class Model {
 
 	}
 
-	public function save()
+	public function save($title)
 	{
+		$db_name = $this->getDatabaseName(static::class);
+
+		$statement = $this->connection->prepare("insert into {$db_name}(title) values('{$title}')");
+
+		$statement->execute();
+
+		return true;
+
 
 	}
 
@@ -50,7 +58,7 @@ class Model {
 
 	}
 
-	public function update()
+	public function update($id, $title)
 	{
 
 	}
