@@ -90,7 +90,9 @@ class TodosController extends Controller {
 
 	public function destroy($id)
 	{	
-		// Delete the record.
+		$todo = new Todo();
+
+		$todo->destroy($id);
 
 		return $this->view('home');
 

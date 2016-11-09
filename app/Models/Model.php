@@ -53,9 +53,16 @@ class Model {
 
 	}
 
-	public function destroy()
+	public function destroy($id)
 	{
+		$db_name = $this->getDatabaseName(static::class);
 
+		$sql = "DELETE FROM {$db_name}
+				WHERE id=:id";
+		$statement = $this->connection->prepare($sql);
+		$statement->bindValue(":id",$id);
+		$statement->execute();
+		
 	}
 
 	public function update($id, $title)

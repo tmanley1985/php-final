@@ -19,16 +19,22 @@
 
     <a href="/todo/create">Create New Todo</a>
 
-    <div class="container">
+    <div class="container" style="display:flex;justify-content:center;align-items:center;flex-direction:column;">
 
         <?php if(isset($data)): ?>
 
+
             <?php foreach($data as $todo): ?>
 
-                <a href="/todo/show/<?= $todo['id'];?>">
-                    <?=$todo['title']; ?>
-                    
-                </a>
+                <div class="todo" style="display:flex;justify-content:center;align-items:center;">
+
+                    <a href="/todo/show/<?= $todo['id'];?>">
+                        <?=$todo['title']; ?>
+                    </a>
+                    <a href="/todo/destroy/<?= $todo['id'];?>">Delete</a>
+                    <a href="/todo/edit/<?= $todo['id'];?>">Edit</a>
+                </div>
+               
             <?php endforeach ?>
         <?php endif ?>
     </div>    
