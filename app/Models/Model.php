@@ -5,6 +5,7 @@ use App\Database\DB;
 class Model {
 
 	protected $connection;
+	public static $errors = [];
 
 	public function __construct()
 	{
@@ -19,9 +20,20 @@ class Model {
 		$this->connection = $connection;
 	}
 
-	public function validate()
+	public function errors()
+	{
+		return static::$errors;
+	}
+
+	public function validate($title)
 	{
 
+		if($title == null) {
+
+			static::$errors['title'] = 'Title cannot be null';
+		}
+
+		return false;
 	}
 	
 	public static function find($id)
@@ -42,6 +54,13 @@ class Model {
 
 	public function save($title)
 	{
+		// $validation = $this->validate($title);
+
+		// if($validation == false) {
+
+		// 	return false;
+		// }
+
 		$db_name = $this->getDatabaseName(static::class);
 
 		$statement = $this->connection->prepare("insert into {$db_name}(title) values('{$title}')");
@@ -67,6 +86,14 @@ class Model {
 
 	public function update($id, $title)
 	{
+
+		$validation = $this->validate($title);
+
+		if($validation == false) {
+
+			return false;
+		}
+		
 		$db_name = $this->getDatabaseName(static::class);
 
 		$sql = "UPDATE `{$db_name}` SET `title` = :title WHERE id = :id";

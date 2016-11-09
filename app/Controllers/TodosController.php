@@ -15,10 +15,8 @@ class TodosController extends Controller {
 
 	public function index()
 	{
-		
 
 		$todos = Todo::findAll();
-
 
 		return $this->view('home', $todos);
 	}
@@ -50,7 +48,14 @@ class TodosController extends Controller {
 
 		$todo = new Todo();
 
-		$todo_added = $todo->save($title);
+		$todo->save($title);
+
+		// if($todo_added == false) {
+
+		// 	$errors = $todo->errors();
+
+		// 	return $this->view('create', ['errors' => $errors]);
+		// }
 
 		return $this->view('home');
 
@@ -82,7 +87,14 @@ class TodosController extends Controller {
 
 		$todo = new Todo();
 
-		$todo->update($id, $title);
+		$todo_updated = $todo->update($id, $title);
+
+		if($todo_updated == false) {
+
+			$errors = $todo->errors();
+
+			return $this->view('create', ['errors' => $errors]);
+		}
 
 		return $this->view('home');
 

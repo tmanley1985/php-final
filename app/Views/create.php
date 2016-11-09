@@ -17,6 +17,14 @@
             <a href="/todo/index">Index</a>
         </nav>
     </header>
+    
+    <?php if(isset($data['errors'])): ?>
+        <div class="errors flex-centered flex-column">
+            <?php foreach($data['errors'] as $error): ?>
+                <div class="error"><?=$error?></div>
+            <?php endforeach ?>
+        </div>
+    <?php endif ?>
     <h1>Create A New Todo</h1>
 
     <div class="container">
