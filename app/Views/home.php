@@ -10,6 +10,10 @@
     <body>
      
     <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/todo/index">Index</a>
+        </nav>
         <h1>TodoApp</h1>
     </header>
 
