@@ -18,9 +18,9 @@
         </nav>
     </header>
     
-    <?php if(isset($data['errors'])): ?>
+    <?php if (isset($data['errors'])): ?>
         <div class="errors flex-centered flex-column">
-            <?php foreach($data['errors'] as $error): ?>
+            <?php foreach ($data['errors'] as $error): ?>
                 <div class="error"><?=$error?></div>
             <?php endforeach ?>
         </div>

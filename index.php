@@ -25,7 +25,7 @@ class Router
 
 		// If url is empty go to home page.
 
-		if(count($url) < 2) {
+		if (count($url) < 2) {
 
 			return call_user_func_array([self::$controller, 'view'], ['home']);
 		}

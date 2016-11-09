@@ -53,7 +53,7 @@ class TodosController extends Controller
 
 		$todo_added = $todo->save($title);
 
-		if($todo_added == false) {
+		if ($todo_added == false) {
 
 			$errors = $todo->errors();
 
@@ -92,7 +92,7 @@ class TodosController extends Controller
 
 		$todo_updated = $todo->update($id, $title);
 
-		if($todo_updated == false) {
+		if ($todo_updated == false) {
 
 			$errors = $todo->errors();
 

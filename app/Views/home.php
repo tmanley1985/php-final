@@ -24,10 +24,10 @@
 
     <div class="container">
 
-        <?php if(isset($data)): ?>
+        <?php if (isset($data)): ?>
 
 
-            <?php foreach($data as $todo): ?>
+            <?php foreach ($data as $todo): ?>
 
                 <div class="todo" class="flex-centered flex-column">
 

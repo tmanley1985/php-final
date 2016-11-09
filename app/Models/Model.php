@@ -31,7 +31,7 @@ class Model
 	public function validate($title)
 	{
 
-		if($title == null) {
+		if ($title == null) {
 
 			static::$errors['title'] = 'Title cannot be null';
 			return false;
