@@ -7,14 +7,6 @@ require_once('app/Database/DB.php');
 require_once('app/Models/Todo.php');
 require_once('app/Controllers/TodosController.php');
 
-// $connection = new App\Database\DB();
-
-$model = new App\Models\Todo();
-
-// $controller = new App\Controllers\TodosController(  $model );
-
-
-
 $url = $_SERVER['REQUEST_URI'];
 
 
