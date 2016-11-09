@@ -44,7 +44,13 @@ class Router {
 		// Set the method
 		self::$method = $url[1];
 
-		call_user_func_array([self::$controller, self::$method], ['home']);
+		// Get the params by filtering past the method index;
+		$params = array_filter($url, function($index){
+			return $index > 1;
+		}, ARRAY_FILTER_USE_KEY);
+
+		// Call the controller with the method and the params
+		call_user_func_array([self::$controller, self::$method], $params);
 
 		
 	}
