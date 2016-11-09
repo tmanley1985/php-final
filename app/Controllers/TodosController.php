@@ -26,10 +26,10 @@ class TodosController extends Controller {
 
 	public function show($id)
 	{
-		// $todo = Todo::find($id);
+		$todo = Todo::find($id);
 
-		$todo = ['id' => $id, 'title' => 'Make Sandwich'];
-		
+		// $todo = ['id' => $id, 'title' => 'Make Sandwich'];
+
 		return $this->view('show', $todo);
 
 	}
@@ -43,22 +43,47 @@ class TodosController extends Controller {
 	{
 		extract($_POST);
 
+		// Validate using the todo model.
+
+		// if errors are set, return view with errors.
+
+		// Store the todo.
+
 		return $this->view('home');
 
 	}
 
-	public function edit()
+	public function edit($id)
 	{
 
+		// $todo = Todo::find($id);
+
+		$todo = ['id' => $id, 'title' => 'Make Sandwich'];
+
+		return $this->view('edit', $todo);
 	}
 
 	public function update()
 	{
 
+
+		extract($_POST);
+
+		// Validate using the todo model.
+
+		// if errors are set, return view with errors.
+		
+		// Update the todo.
+
+		return $this->view('home');
+
 	}
 
-	public function destroy()
-	{
+	public function destroy($id)
+	{	
+		// Delete the record.
+
+		return $this->view('home');
 
 	}
 

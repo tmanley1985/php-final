@@ -26,7 +26,9 @@ class Model {
 	
 	public static function find($id)
 	{
+		$static = new static();
 
+		return $static->get($id);
 
 	}
 
@@ -51,8 +53,23 @@ class Model {
 
 	}
 
-	public function get()
+	public function get($id)
 	{
+		$db_name = $this->getDatabaseName(static::class);
+
+		$statement = $this->connection->prepare("select * from {$db_name} where id = {$id}");
+
+		$statement->execute();
+
+		return $statement->fetch();
+		
+
+	}
+
+	public function getDatabaseName($class) 
+	{
+		// Split the path by backslashes, grab the last element, cast it to a string and add an s.
+		return strtolower(implode('', array_slice( explode( '\\', $class ), -1 ) ) )  . 's';
 
 	}
 }
