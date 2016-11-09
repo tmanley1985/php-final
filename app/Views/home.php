@@ -14,14 +14,17 @@
     </header>
 
     <a href="/todo/create">Create New Todo</a>
-    
+
     <div class="container">
 
         <?php if(isset($data)): ?>
 
             <?php foreach($data as $todo): ?>
 
-                <a href="/todo/show/"<?= $todo['id'];?>></a><?=$todo['title']; ?></a>
+                <a href="/todo/show/<?= $todo['id'];?>">
+                    <?=$todo['title']; ?>
+                    
+                </a>
             <?php endforeach ?>
         <?php endif ?>
     </div>    
