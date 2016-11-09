@@ -6,33 +6,36 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <link rel="stylesheet" type="text/css" href="/public/css/main.css">
     </head>
-    <body>
+    <body class="flex-centered flex-column">
      
-    <header>
+    <header class="flex-centered">
         <nav>
             <a href="/">Home</a>
             <a href="/todo/index">Index</a>
         </nav>
-        <h1>TodoApp</h1>
     </header>
+    
+    <h1>TodoApp</h1>
 
-    <a href="/todo/create">Create New Todo</a>
+    <a class="create" href="/todo/create">Create New Todo</a>
 
-    <div class="container" style="display:flex;justify-content:center;align-items:center;flex-direction:column;">
+    <div class="container">
 
         <?php if(isset($data)): ?>
 
 
             <?php foreach($data as $todo): ?>
 
-                <div class="todo" style="display:flex;justify-content:center;align-items:center;">
+                <div class="todo" class="flex-centered flex-column">
 
-                    <a href="/todo/show/<?= $todo['id'];?>">
+                    <a class="item" href="/todo/show/<?= $todo['id'];?>">
                         <?=$todo['title']; ?>
                     </a>
-                    <a href="/todo/destroy/<?= $todo['id'];?>">Delete</a>
-                    <a href="/todo/edit/<?= $todo['id'];?>">Edit</a>
+                    <a class="delete" href="/todo/destroy/<?= $todo['id'];?>">Delete</a>
+                    <a class="edit" href="/todo/edit/<?= $todo['id'];?>">Edit</a>
                 </div>
                
             <?php endforeach ?>
