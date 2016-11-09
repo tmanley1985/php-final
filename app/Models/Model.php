@@ -31,9 +31,11 @@ class Model {
 		if($title == null) {
 
 			static::$errors['title'] = 'Title cannot be null';
+			return false;
 		}
 
-		return false;
+		return true;
+
 	}
 	
 	public static function find($id)
@@ -54,12 +56,12 @@ class Model {
 
 	public function save($title)
 	{
-		// $validation = $this->validate($title);
+		$validation = $this->validate($title);
 
-		// if($validation == false) {
+		if($validation == false) {
 
-		// 	return false;
-		// }
+			return false;
+		}
 
 		$db_name = $this->getDatabaseName(static::class);
 
@@ -93,7 +95,7 @@ class Model {
 
 			return false;
 		}
-		
+
 		$db_name = $this->getDatabaseName(static::class);
 
 		$sql = "UPDATE `{$db_name}` SET `title` = :title WHERE id = :id";

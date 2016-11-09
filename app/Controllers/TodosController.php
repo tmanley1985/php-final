@@ -48,14 +48,14 @@ class TodosController extends Controller {
 
 		$todo = new Todo();
 
-		$todo->save($title);
+		$todo_added = $todo->save($title);
 
-		// if($todo_added == false) {
+		if($todo_added == false) {
 
-		// 	$errors = $todo->errors();
+			$errors = $todo->errors();
 
-		// 	return $this->view('create', ['errors' => $errors]);
-		// }
+			return $this->view('create', ['errors' => $errors]);
+		}
 
 		return $this->view('home');
 
