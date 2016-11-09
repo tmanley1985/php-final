@@ -15,12 +15,11 @@ class TodosController extends Controller {
 
 	public function index()
 	{
-		// $todos = $this->todo->get();
+		
 
-		$todos = [
-			[	'id' => 1, 'title' => 'Make Sandwich']
-		];
+		$todos = Todo::findAll();
 
+		
 		return $this->view('home', $todos);
 	}
 

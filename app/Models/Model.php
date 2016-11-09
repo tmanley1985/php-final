@@ -32,9 +32,11 @@ class Model {
 
 	}
 
-	public static function findAll($condition)
+	public static function findAll()
 	{
+		$static = new static();
 
+		return $static->getAll();
 
 	}
 
@@ -53,7 +55,7 @@ class Model {
 
 	}
 
-	public function get($id)
+	protected function get($id)
 	{
 		$db_name = $this->getDatabaseName(static::class);
 
@@ -66,7 +68,18 @@ class Model {
 
 	}
 
-	public function getDatabaseName($class) 
+	protected function getAll() 
+	{
+		$db_name = $this->getDatabaseName(static::class);
+
+		$statement = $this->connection->prepare("select * from {$db_name}");
+
+		$statement->execute();
+
+		return $statement->fetchAll();
+	}
+
+	protected function getDatabaseName($class) 
 	{
 		// Split the path by backslashes, grab the last element, cast it to a string and add an s.
 		return strtolower(implode('', array_slice( explode( '\\', $class ), -1 ) ) )  . 's';
