@@ -40,4 +40,14 @@ class TodoTest extends Testcase
 		$this->assertArrayNotHasKey('title', $errors);
 
 	}
+
+	/** @test */
+
+	public function validationPassesWhenAllFieldsAreSet()
+	{
+
+		$this->assertTrue($this->todo->validate('Do something else'));
+
+	}
+
 }
