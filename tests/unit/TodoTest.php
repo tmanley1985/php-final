@@ -18,4 +18,13 @@ class TodoTest extends Testcase
 	{
 		$this->assertFalse($this->product->validate(''));
 	}
+
+	/** @test */
+
+	public function itHasErrorsForEachInvalidField()
+	{
+		$errors = $this->product->errors();
+		
+		$this->assertArrayHasKey('title', $errors);
+	}
 }
