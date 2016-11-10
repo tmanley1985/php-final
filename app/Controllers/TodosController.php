@@ -2,15 +2,16 @@
 
 namespace App\Controllers;
 
-use App\Models\Todo;
+use App\Repositories\TodoRepository;
 use App\Controllers\Controller;
+use App\Models\Todo;
 
 class TodosController extends Controller 
 {
 
 	public $todo;
 
-	public function __construct(Todo $todo)
+	public function __construct(TodoRepository $todo)
 	{
 		$this->todo = $todo;
 
@@ -19,14 +20,14 @@ class TodosController extends Controller
 	public function index()
 	{
 
-		$todos = Todo::findAll();
+		$todos = TodoRepository::findAll();
 
 		return $this->view('home', $todos);
 	}
 
 	public function show($id)
 	{
-		$todo = Todo::find($id);
+		$todo = TodoRepository::find($id);
 
 		// $todo = ['id' => $id, 'title' => 'Make Sandwich'];
 
@@ -49,7 +50,7 @@ class TodosController extends Controller
 
 		// Store the todo.
 
-		$todo = new Todo();
+		$todo = new TodoRepository(new Todo());
 
 		$todo_added = $todo->save($title);
 
@@ -67,7 +68,7 @@ class TodosController extends Controller
 	public function edit($id)
 	{
 
-		$todo = Todo::find($id);
+		$todo = TodoRepository::find($id);
 
 
 		return $this->view('edit', $todo);
@@ -88,7 +89,7 @@ class TodosController extends Controller
 		// Update the todo.
 
 
-		$todo = new Todo();
+		$todo = new TodoRepository(new Todo());
 
 		$todo_updated = $todo->update($id, $title);
 
@@ -105,7 +106,7 @@ class TodosController extends Controller
 
 	public function destroy($id)
 	{	
-		$todo = new Todo();
+		$todo = new TodoRepository(new Todo());
 
 		$todo->destroy($id);
 

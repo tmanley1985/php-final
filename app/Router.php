@@ -2,6 +2,10 @@
 
 namespace App;
 
+use App\Controllers\TodosController;
+use App\Models\Todo;
+use App\Repositories\TodoRepository;
+
 class Router 
 {
 
@@ -13,8 +17,12 @@ class Router
 		// // Parse the url string
 		$url = self::parseUrl($url);
 
+		$todo = new Todo();
+
+		$repo = new TodoRepository($todo);
+
 		// At the moment, there's only one controller and model.  Will refactor this later;
-		self::$controller = new \App\Controllers\TodosController(new \App\Models\Todo());
+		self::$controller = new TodosController($repo);
 
 		// If url is empty go to home page.
 
