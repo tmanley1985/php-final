@@ -43,4 +43,15 @@ class TodoDatabaseTest extends \PHPUnit_Extensions_Database_TestCase
         $this->assertTablesEqual($expectedTable, $queryTable);
 	}
 
+
+    /** @test */
+
+	public function databaseIsEmpty()
+	{
+
+        //Here we check that the table in the database matches the data in the XML file
+        $this->assertTableRowCount('todos', 0);
+	}
+
+
 }
