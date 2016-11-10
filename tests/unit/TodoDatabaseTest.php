@@ -5,6 +5,16 @@ use \Faker\Factory as Faker;
 
 class TodoDatabaseTest extends \PHPUnit_Extensions_Database_TestCase
 {
+	protected $todo;
+
+	public function setUp()
+	{
+		parent::setUp();
+
+		$this->todo = new Todo();
+
+	}
+
 	/**
     * @return PHPUnit_Extensions_Database_DB_IDatabaseConnection
     */
@@ -50,8 +60,42 @@ class TodoDatabaseTest extends \PHPUnit_Extensions_Database_TestCase
 	{
 
         //Here we check that the table in the database matches the data in the XML file
-        $this->assertTableRowCount('todos', 0);
+        $this->assertTableRowCount('todos', 11);
 	}
 
+	/** @test */
+
+	public function todoIsPersistedInDatabase()
+	{
+
+		$title = Faker::create()->sentence(5);
+
+		$this->todo->save($title);
+
+        //Here we check that the table in the database matches the data in the XML file
+        $this->assertTableRowCount('todos', 12);
+	}
+
+	/** @test */
+
+	public function todoIsUpdated()
+	{
+		$rowCount = $this->getConnection()->getRowCount('todos');
+		
+		$title = Faker::create()->sentence(5);
+
+		$this->todo->update($this->todo->getId(), $title);
+
+		$newRowCount = $this->getConnection()->getRowCount('todos');
+
+		$this->assertEquals($rowCount, $newRowCount );
+
+
+	}
+
+	public function tearDown()
+	{
+		parent::tearDown();
+	}
 
 }

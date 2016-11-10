@@ -8,6 +8,8 @@ class Model
 {
 
 	protected $connection;
+
+	protected $id;
 	
 	public static $errors = [];
 
@@ -22,6 +24,11 @@ class Model
 		}
 
 		$this->connection = $connection;
+	}
+
+	public function getId()
+	{
+		return $this->id ? $this->id : null;
 	}
 
 	public function errors()
@@ -73,6 +80,8 @@ class Model
 		$statement = $this->connection->prepare("insert into {$db_name}(title) values('{$title}')");
 
 		$statement->execute();
+
+		$this->id = $this->connection->lastInsertId();
 
 		return true;
 
