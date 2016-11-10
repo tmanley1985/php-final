@@ -107,6 +107,34 @@ class TodoDatabaseTest extends \PHPUnit_Extensions_Database_TestCase
 
 	}
 
+	/** @test */
+
+	public function testMockObject()
+	{
+        $dao = \Mockery::mock('\App\Database\DAOInterface');
+
+
+        $dao->shouldReceive('get')->once();
+
+        $dao->shouldReceive('save')->once();
+
+        $dao->shouldReceive('delete')->once();
+
+        $dao->shouldReceive('update')->once();
+
+        $todo = new Todo($dao);
+
+        $todo->find(23);
+
+        $todo->save('title');
+
+        $todo->destroy(23);
+
+        $todo->update(23, 'new title');
+
+
+    }
+
 	public function tearDown()
 	{
 		parent::tearDown();
