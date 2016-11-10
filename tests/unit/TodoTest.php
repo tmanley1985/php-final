@@ -1,15 +1,19 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
 use \App\Models\Todo;
+use \Faker\Factory as Faker;
+use PHPUnit\Framework\TestCase;
 
 class TodoTest extends Testcase
 {
 	protected $todo;
+	protected $faker;
 
 	public function setUp()
 	{
 		$this->todo = new Todo();
+		$this->faker = Faker::create();
+
 	}
 
 	/** @test */
@@ -32,7 +36,10 @@ class TodoTest extends Testcase
 
 	public function errorsWillNotContainKeyForValidFields()
 	{
-		$this->todo->validate('Do Something');
+
+		$title = $this->faker->sentence(5);
+
+		$this->todo->validate($title);
 
 		$errors = $this->todo->errors();
 
@@ -46,7 +53,17 @@ class TodoTest extends Testcase
 	public function validationPassesWhenAllFieldsAreSet()
 	{
 
-		$this->assertTrue($this->todo->validate('Do something else'));
+		$title = $this->faker->sentence(5);
+
+		$this->assertTrue($this->todo->validate($title));
+
+	}
+
+	/** @test */
+
+	public function saveMethodInsertsRecordsIntoTheDatabase()
+	{
+
 
 	}
 
