@@ -1,6 +1,7 @@
 <?php
 
 use \App\Models\Todo;
+use \App\Database\DAO;
 use \Faker\Factory as Faker;
 use PHPUnit\Framework\TestCase;
 
@@ -11,7 +12,8 @@ class TodoTest extends Testcase
 
 	public function setUp()
 	{
-		$this->todo = new Todo();
+		$this->todo = new Todo( new DAO('todos') );
+
 		$this->faker = Faker::create();
 
 	}

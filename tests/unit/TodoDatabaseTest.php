@@ -1,6 +1,7 @@
 <?php
 
 use \App\Models\Todo;
+use \App\Database\DAO;
 use \Faker\Factory as Faker;
 
 class TodoDatabaseTest extends \PHPUnit_Extensions_Database_TestCase
@@ -11,7 +12,7 @@ class TodoDatabaseTest extends \PHPUnit_Extensions_Database_TestCase
 	{
 		parent::setUp();
 
-		$this->todo = new Todo();
+		$this->todo = new Todo(new DAO('todos'));
 
 	}
 
