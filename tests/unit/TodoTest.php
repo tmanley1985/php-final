@@ -16,6 +16,6 @@ class TodoTest extends Testcase
 
 	public function validationWillFailIfTitleIsNull()
 	{
-
+		$this->assertFalse($this->product->validate(''));
 	}
 }
