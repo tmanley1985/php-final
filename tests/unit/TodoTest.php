@@ -1,7 +1,16 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
+use App\Models\Todo;
 
-class TodoTest extends PHPUnit_Framework_Testcase
+class TodoTest extends Testcase
 {
+	protected $todo;
+
+	public function setUp()
+	{
+		$this->product = new Todo();
+	}
+
 	
 }
