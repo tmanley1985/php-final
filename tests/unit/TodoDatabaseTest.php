@@ -90,6 +90,19 @@ class TodoDatabaseTest extends \PHPUnit_Extensions_Database_TestCase
 
 		$this->assertEquals($rowCount, $newRowCount );
 
+	}
+
+	/** @test */
+
+	public function todoIsDeleted()
+	{
+		$rowCount = $this->getConnection()->getRowCount('todos');
+		
+		$this->todo->destroy($this->todo->getId());
+
+		$newRowCount = $this->getConnection()->getRowCount('todos');
+
+		$this->assertFalse($rowCount == ($newRowCount - 1));
 
 	}
 
