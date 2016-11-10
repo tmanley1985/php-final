@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use App\Database\DB;
+use App\Database\DAO;
+use App\Database\DAOInterface as Connection;
 
 class Model 
 {
@@ -13,15 +14,8 @@ class Model
 	
 	public static $errors = [];
 
-	public function __construct()
+	public function __construct(Connection $connection)
 	{
-		try {
-
-			$connection = new \PDO('mysql:host=127.0.0.1;dbname=homestead', 'homestead', 'secret');
-
-		}catch(PDOException $e) {
-			die('Could not connect');
-		}
 
 		$this->connection = $connection;
 	}
@@ -52,17 +46,18 @@ class Model
 	
 	public static function find($id)
 	{
-		$static = new static();
+		
+		$static = new static(new DAO('todos'));
 
-		return $static->get($id);
+		return $static->connection->get($id);
 
 	}
 
 	public static function findAll()
 	{
-		$static = new static();
+		$static = new static(new DAO('todos'));
 
-		return $static->getAll();
+		return $static->connection->getAll();
 
 	}
 
@@ -75,28 +70,17 @@ class Model
 			return false;
 		}
 
-		$db_name = $this->getDatabaseName(static::class);
-
-		$statement = $this->connection->prepare("insert into {$db_name}(title) values('{$title}')");
-
-		$statement->execute();
-
-		$this->id = $this->connection->lastInsertId();
+		$this->id = $this->connection->save($title);
 
 		return true;
-
 
 	}
 
 	public function destroy($id)
 	{
-		$db_name = $this->getDatabaseName(static::class);
+		$table_name = $this->getDatabaseName(static::class);
 
-		$sql = "DELETE FROM {$db_name}
-				WHERE id=:id";
-		$statement = $this->connection->prepare($sql);
-		$statement->bindValue(":id",$id);
-		$statement->execute();
+		return $this->connection->delete($id);
 		
 	}
 
@@ -110,43 +94,23 @@ class Model
 			return false;
 		}
 
-		$db_name = $this->getDatabaseName(static::class);
-
-		$sql = "UPDATE `{$db_name}` SET `title` = :title WHERE id = :id";
-
-		$statement = $this->connection->prepare($sql);
- 		
- 		$statement->bindValue(":title", $title);
-
- 		$statement->bindValue(":id", $id);
-
- 		$statement->execute();
+		return $this->connection->update($id, $title);
  		
 
 	}
 
 	protected function get($id)
 	{
-		$db_name = $this->getDatabaseName(static::class);
 
-		$statement = $this->connection->prepare("select * from {$db_name} where id = {$id}");
-
-		$statement->execute();
-
-		return $statement->fetch();
+		return $this->connection->get($id);
 		
 
 	}
 
 	protected function getAll() 
 	{
-		$db_name = $this->getDatabaseName(static::class);
 
-		$statement = $this->connection->prepare("select * from {$db_name}");
-
-		$statement->execute();
-
-		return $statement->fetchAll();
+		return $this->connection->getAll();
 	}
 
 	protected function getDatabaseName($class) 

@@ -2,9 +2,10 @@
 
 namespace App\Controllers;
 
-use App\Repositories\TodoRepository;
-use App\Controllers\Controller;
 use App\Models\Todo;
+use App\Database\DAO;
+use App\Controllers\Controller;
+use App\Repositories\TodoRepository;
 
 class TodosController extends Controller 
 {
@@ -50,7 +51,7 @@ class TodosController extends Controller
 
 		// Store the todo.
 
-		$todo = new TodoRepository(new Todo());
+		$todo = new TodoRepository(new Todo( new DAO('todos')));
 
 		$todo_added = $todo->save($title);
 
@@ -83,13 +84,11 @@ class TodosController extends Controller
 		// Validate using the todo model.
 
 		// if errors are set, return view with errors.
-		
-
-
+	
 		// Update the todo.
 
 
-		$todo = new TodoRepository(new Todo());
+		$todo = new TodoRepository(new Todo( new DAO('todos')));
 
 		$todo_updated = $todo->update($id, $title);
 
@@ -106,7 +105,7 @@ class TodosController extends Controller
 
 	public function destroy($id)
 	{	
-		$todo = new TodoRepository(new Todo());
+		$todo = new TodoRepository(new Todo(new DAO('todos')));
 
 		$todo->destroy($id);
 

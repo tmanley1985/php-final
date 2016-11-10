@@ -2,8 +2,9 @@
 
 namespace App;
 
-use App\Controllers\TodosController;
 use App\Models\Todo;
+use App\Database\DAO;
+use App\Controllers\TodosController;
 use App\Repositories\TodoRepository;
 
 class Router 
@@ -17,11 +18,16 @@ class Router
 		// // Parse the url string
 		$url = self::parseUrl($url);
 
-		$todo = new Todo();
+		// Instantiate database access layer.
+		$dao = new DAO('todos');
 
+		// Inject dao into model.
+		$todo = new Todo($dao);
+
+		// Inject model into the repo.
 		$repo = new TodoRepository($todo);
 
-		// At the moment, there's only one controller and model.  Will refactor this later;
+		// At the moment, there's only one controller and model.  Will refactor this later.
 		self::$controller = new TodosController($repo);
 
 		// If url is empty go to home page.
