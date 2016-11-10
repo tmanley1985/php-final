@@ -8,6 +8,7 @@ class Model
 {
 
 	protected $connection;
+	
 	public static $errors = [];
 
 	public function __construct()
@@ -61,7 +62,7 @@ class Model
 	{
 		$validation = $this->validate($title);
 
-		if($validation == false) {
+		if ($validation == false) {
 
 			return false;
 		}
@@ -94,7 +95,7 @@ class Model
 
 		$validation = $this->validate($title);
 
-		if($validation == false) {
+		if ($validation == false) {
 
 			return false;
 		}
@@ -106,7 +107,9 @@ class Model
 		$statement = $this->connection->prepare($sql);
  		
  		$statement->bindValue(":title", $title);
+
  		$statement->bindValue(":id", $id);
+
  		$statement->execute();
  		
 

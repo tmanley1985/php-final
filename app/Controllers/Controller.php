@@ -5,10 +5,10 @@ namespace App\Controllers;
 class Controller 
 {
 	/**
-	 * Requires the view file
-	 * @param  string $view Filename
-	 * @return void
-	 */
+	* Requires the view file
+	* @param  string $view Filename
+	* @return void
+	*/
 	public function view( $view, $data = [] )
 	{
 		

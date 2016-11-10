@@ -41,7 +41,7 @@ class Router
 	{
 
 		// If url has ? then remove it along with everything after it.
-		if(strpos($url,'?') !== false) {
+		if (strpos($url,'?') !== false) {
 
 			$url = strstr($url, '?');
 		}
