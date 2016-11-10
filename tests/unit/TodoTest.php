@@ -59,12 +59,4 @@ class TodoTest extends Testcase
 
 	}
 
-	/** @test */
-
-	public function saveMethodInsertsRecordsIntoTheDatabase()
-	{
-
-
-	}
-
 }
