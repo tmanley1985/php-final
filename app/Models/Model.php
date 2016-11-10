@@ -31,6 +31,7 @@ class Model
 
 	public function validate($title)
 	{
+		static::$errors = [];
 
 		if ($title == null) {
 

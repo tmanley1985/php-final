@@ -9,22 +9,35 @@ class TodoTest extends Testcase
 
 	public function setUp()
 	{
-		$this->product = new Todo();
+		$this->todo = new Todo();
 	}
 
 	/** @test */
 
 	public function validationWillFailIfTitleIsNull()
 	{
-		$this->assertFalse($this->product->validate(''));
+		$this->assertFalse($this->todo->validate(''));
 	}
 
 	/** @test */
 
 	public function itHasErrorsForEachInvalidField()
 	{
-		$errors = $this->product->errors();
-		
+		$errors = $this->todo->errors();
+
 		$this->assertArrayHasKey('title', $errors);
+	}
+
+	/** @test */
+
+	public function errorsWillNotContainKeyForValidFields()
+	{
+		$this->todo->validate('Do Something');
+
+		$errors = $this->todo->errors();
+
+
+		$this->assertArrayNotHasKey('title', $errors);
+
 	}
 }
