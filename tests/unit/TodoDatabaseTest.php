@@ -11,7 +11,7 @@ class TodoDatabaseTest extends \PHPUnit_Extensions_Database_TestCase
     public function getConnection()
     {
         $pdo = new PDO('mysql:host=127.0.0.1;dbname=homestead', 'homestead', 'secret');
-        
+
         return $this->createDefaultDBConnection($pdo,'homestead');
     }
 
@@ -20,7 +20,7 @@ class TodoDatabaseTest extends \PHPUnit_Extensions_Database_TestCase
     */
     public function getDataSet()
     {
-        return $this->createMySQLXMLDataSet(__DIR__ . '/seed.xml');
+        return $this->createMySQLXMLDataSet(__DIR__ . '/todos.xml');
 
     }
 
