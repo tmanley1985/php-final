@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use App\Models\Todo;
+use \App\Models\Todo;
 
 class TodoTest extends Testcase
 {
@@ -12,5 +12,10 @@ class TodoTest extends Testcase
 		$this->product = new Todo();
 	}
 
-	
+	/** @test */
+
+	public function validationWillFailIfTitleIsNull()
+	{
+
+	}
 }
