@@ -10,47 +10,57 @@ use App\Repositories\TodoRepository;
 class Router 
 {
 
+	/** @type App\Controllers\TodosController $controller The controller being requested. */
 	protected static $controller;
+	/** @type string $method The method of the current request. */
 	protected static $method;
 
+	/**
+	 * @param  string $url The url of the current request.
+	 * 
+	 * @return void
+	 */
 	public static function direct($url)
 	{
-		// // Parse the url string
+		/** @type array  $url The array of the url pieces. */
 		$url = self::parseUrl($url);
 
-		// Instantiate database access layer.
 		$dao = new DAO('todos');
 
-		// Inject dao into model.
 		$todo = new Todo($dao);
-
-		// Inject model into the repo.
+		
 		$repo = new TodoRepository($todo);
 
-		// At the moment, there's only one controller and model.  Will refactor this later.
+		/** @type App\Controllers\TodosController $controller Instance is now a static property. */
 		self::$controller = new TodosController($repo);
 
-		// If url is empty go to home page.
-
+		/** If there is no request for a controller redirect home. */
 		if (count($url) < 2) {
 
 			return call_user_func_array([self::$controller, 'view'], ['home']);
 		}
 
-		// Set the method
+		/** @type string self::$method Set the method for the controller */
 		self::$method = $url[1];
 
-		// Get the params by filtering past the method index;
+		/** @type array $params Params are everything past the method */
 		$params = array_filter($url, function($index){
+
 			return $index > 1;
+
 		}, ARRAY_FILTER_USE_KEY);
 
-		// Call the controller with the method and the params
+		/** Call the controller with the method and the params */
 		call_user_func_array([self::$controller, self::$method], $params);
 
 		
 	}
 
+	/**
+	 * @param  string $url The current url.
+	 * 
+	 * @return array
+	 */
 	protected static function parseUrl($url) 
 	{
 
