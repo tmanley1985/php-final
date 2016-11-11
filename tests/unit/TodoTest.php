@@ -61,4 +61,11 @@ class TodoTest extends Testcase
 
 	}
 
+	/** @test */
+
+	public function itWillReturnTheIdAsNullIfNotPersisted()
+	{
+		$this->assertInternalType('null', $this->todo->getId());
+	}
+
 }
