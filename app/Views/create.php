@@ -28,7 +28,7 @@
     <h1>Create A New Todo</h1>
 
     <div class="container">
-        <form action="/todo/store" method="POST">
+        <form id="create-todo" action="/todo/store" method="POST">
             
             <input type="text" name="title" placeholder="New Todo">
             <button type="submit">Submit</button>
